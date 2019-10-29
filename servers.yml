@@ -1,0 +1,44 @@
+-
+  host: localhost
+  port: 6668
+  channels:
+    - '#aussie'
+    - '#cosmic'
+    - '#ctrl-c'
+    - '#envs'
+    - '#radiofreqs'
+    - '#hamradio'
+    - '#thunix'
+    - '#black'
+    - '#club'
+    - '#institute'
+    - '#pink'
+    - '#team'
+    - '#town'
+    - '#yourtilde'
+    - '#meta'
+    - '#bots'
+    - '#paper'
+    - '#papertest'
+-
+  host: localhost
+  port: 6669
+  master: Wingy
+  channels:
+    - '#tildetown'
+    - '#bots'
+    - '#projects'
+    - '#tildemush'
+    - '#dumpsterfire'
+    - '#share'
+    - '#engines'
+    - '#music'
+    - '#abookclub'
+    - '#witches'
+    - '#tildeplays'
+    - '#go'
+    - '#tokipona'
+    - '#ttbp'
+    - '#math'
+    - '#mafia'
+    - '#paper'

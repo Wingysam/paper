@@ -1,0 +1,1 @@
+module.exports = Paper => new Paper.DependencyManager.Enmap({ name: 'data' })
