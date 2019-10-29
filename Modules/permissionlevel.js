@@ -3,7 +3,7 @@ module.exports = {
   run: Paper => {
     Paper.CommandManager.add({
       name: 'permissionlevel',
-      aliases: [ 'perm', 'perms', 'permissions', 'permissionslevel', 'permissionlevels', 'permissionslevels' ],
+      aliases: [ 'perm', 'perms', 'permission', 'permissions', 'permissionslevel', 'permissionlevels', 'permissionslevels' ],
       run: async (message, client) => {
         const nick = message.args[0]
         if (nick) {
