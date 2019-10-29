@@ -28,19 +28,33 @@ class CommandManager {
           }
         }
 
-        this._commands.forEach(command => {
+        this._commands.forEach(async command => {
           const names = [ command.name, ...command.aliases ]
           if (!names.includes(commandName)) return
+
+          const permissionLevel = await Paper.PermissionManager.get({
+            client,
+            nick: from,
+            channel: to
+          })
+          
+          const permissionLevels = Paper.PermissionManager.permissionLevels
+            .map(permissionLevel => permissionLevel.name)
+
+          if (permissionLevels.indexOf(command.permissionLevel) < permissionLevels.indexOf(permissionLevel))
+            return client.say((to === client.nick ? from : to), `[${command.module.name.irc.red()}] You need higher permissions. Required: ${command.permissionLevel}. You have: ${permissionLevel}.`)
+
           command.run({
-            author: from,
+            author: { name: from, permissionLevel },
             channel: {
               name: to,
               send: (message, opts) => {
                 opts = Paper.DependencyManager.lodash.defaultsDeep(opts, {
                   scoped: true
                 })
-                let scope = ''
-                if (opts.scoped) scope = `[${command.module.name.irc.green()}] `
+                let scope = `[${command.module.name.irc.green()}] `
+                if (opts.error) scope = `[${command.module.name.irc.green()}] `
+                if (!opts.scoped) scope = ''
                 client.say((to === client.nick ? from : to), scope + message)
               },
               isOp: name => new Promise(resolve => {
@@ -59,7 +73,8 @@ class CommandManager {
     command.module = this._Paper.FunctionManager.getModule()
     if (!command.name) throw new Error('command must have name')
     this._commands.push(this._Paper.DependencyManager.lodash.defaultsDeep(command, {
-      aliases: []
+      aliases: [],
+      permissionLevel: 'none'
     }))
   }
 }

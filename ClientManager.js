@@ -20,6 +20,10 @@ module.exports = Paper => {
           channel: to,
           content: message
         }))
+
+        client.on('invite', (channel, from, message) => {
+          this.emit('invite', { client, channel, from, message })
+        })
     
         this.clients.push(client)
       })

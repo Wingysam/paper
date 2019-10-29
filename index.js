@@ -8,6 +8,7 @@ async function main() {
   Paper.FunctionManager = await require('./FunctionManager')(Paper)
   Paper.ConfigManager = await require('./ConfigManager')(Paper)
   Paper.ClientManager = new (require('./ClientManager')(Paper))()
+  Paper.PermissionManager = new (require('./PermissionManager')(Paper))
   Paper.CommandManager = new (require('./CommandManager'))(Paper)
   Paper.ModuleManager = await require('./ModuleManager')(Paper)
 
