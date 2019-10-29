@@ -9,6 +9,7 @@ class CommandManager {
         if (Paper.ConfigManager.prefix) prefixes.push(Paper.ConfigManager.prefix)
         
         const prefix = prefixes.find(prefix => message.startsWith(prefix))
+        if (!prefix) return
 
         const command = message.replace(prefix, '').split(' ')
         const commandName = command.shift()
