@@ -1,6 +1,12 @@
 config.yml
 data/
 
+Modules/*
+!Modules/pingpong
+!Modules/info.js
+!Modules/join-leave.js
+!Modules/permissionlevel.js
+
 # Created by https://www.gitignore.io/api/node
 # Edit at https://www.gitignore.io/?templates=node
 
