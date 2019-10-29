@@ -14,7 +14,19 @@ class CommandManager {
         const command = message.replace(prefix, '').split(' ')
         const commandName = command.shift()
         const argString = command.join(' ')
-        const args = Paper.DependencyManager.parseArgs(argString)
+        let args
+        try {
+          args = Paper.DependencyManager.parseArgs(argString)
+        } catch (error) {
+          if (error.message === 'Invalid argument(s)') {
+            client.say((to === client.nick ? from : to), "Invalid argument(s) - Do you have a misplaced quote? '_'")
+          } else if (error.message === 'Unexpected end of input') {
+            client.say((to === client.nick ? from : to), "Invalid argument(s) - Are you missing a quote? '_° ")
+          } else {
+            console.error(error)
+            return
+          }
+        }
 
         this._commands.forEach(command => {
           const names = [ command.name, ...command.aliases ]
