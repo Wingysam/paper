@@ -8,7 +8,7 @@ module.exports = {
     })
 
     Paper.ClientManager.on('message', message => {
-      if (![ '!bots', '!botlist', '!rollcall' ].includes(message.content)) return
+      if (![ '!bots', '!botlist', '!rollcall', `${Paper.ConfigManager.prefix}info` ].includes(message.content)) return
       message.client.say(
         message.channel,
         `[${'Info'.irc.green()}] Paper Framework v${Paper.version}, my master is ${message.client.paperConfig.master}`
