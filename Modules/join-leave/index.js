@@ -24,7 +24,7 @@ module.exports = {
         if (
           message.author !== client.paperConfig.master
           && !(await message.channel.isOp(message.author))
-        ) return message.send('You are not op. Please have an op run that command.')
+        ) return message.channel.send('You are not op. Please have an op run that command.')
         const channelsKey = `${client.paperConfig.host}:${client.paperConfig.port}/channels`
         let channels = Paper.Store.get(channelsKey) || []
         channels = channels.filter(channel => channel !== message.channel.name)
